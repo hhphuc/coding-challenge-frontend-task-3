@@ -1,4 +1,5 @@
 import "@/styles/globals.scss";
+import { ChakraProvider } from "@chakra-ui/react";
 import {
   RainbowKitProvider,
   darkTheme,
@@ -11,6 +12,7 @@ import type { AppProps } from "next/app";
 import { useMemo } from "react";
 import { WagmiProvider } from "wagmi";
 import { mainnet } from "wagmi/chains";
+import "./app.css";
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = new QueryClient();
@@ -36,7 +38,9 @@ export default function App({ Component, pageProps }: AppProps) {
             darkMode: darkTheme(),
           }}
         >
-          <Component {...pageProps} />
+          <ChakraProvider>
+            <Component {...pageProps} />
+          </ChakraProvider>
         </RainbowKitProvider>
       </WagmiProvider>
     </QueryClientProvider>
