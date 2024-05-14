@@ -2,23 +2,28 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  ModalFooter,
   ModalHeader,
   ModalOverlay,
   ModalProps,
 } from "@chakra-ui/react";
 
 export interface DialogProps extends ModalProps {
-  title?: string;
+  title: JSX.Element;
+  footer: JSX.Element;
 }
 
 const Dialog = (props: DialogProps) => {
-  const { children, title, ...restProps } = props;
+  const { children, title, footer, ...restProps } = props;
+
   return (
     <Modal {...restProps}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>{title || "Dialog"}</ModalHeader>
+        <ModalHeader>{title}</ModalHeader>
+        <hr />
         <ModalBody>{children}</ModalBody>
+        <ModalFooter gap={2}>{footer}</ModalFooter>
       </ModalContent>
     </Modal>
   );
